@@ -12,17 +12,17 @@ const app = express();
 
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({ origin: "https://whatsappapplication.onrender.com", credentials: true }));
 app.use('/', Routes);
 
-//step 3: Heroku
+// //step 3: Heroku
 
-if(process.env.NODE_ENV==="production"){
-    app.use(express.static("client/build"));
-    app.get("*",(request,response)=>{
-        response.sendFile(path.resolve(__dirname,'client', 'build', 'index.html'));
-    })
-}
+// if(process.env.NODE_ENV==="production"){
+//     app.use(express.static("client/build"));
+//     app.get("*",(request,response)=>{
+//         response.sendFile(path.resolve(__dirname,'client', 'build', 'index.html'));
+//     })
+// }
 
 const PORT = process.env.PORT || 8000;
 const USERNAME = process.env.DB_USERNAME;
